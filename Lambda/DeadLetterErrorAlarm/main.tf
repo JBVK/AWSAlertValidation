@@ -6,7 +6,7 @@ data "archive_file" "dead_letter_error_alert_zip" {
 
 resource "aws_lambda_function" "dead_letter_error_alert" {
   filename                       = data.archive_file.dead_letter_error_alert_zip.output_path
-  function_name                  = "AWSAlertValidationDLQAlert"
+  function_name                  = "AWSAlertValidationDeadLetterErrorAlarm"
   role                           = aws_iam_role.dead_letter_error_alert_lambda_execution.arn
   handler                        = "DeadLetterErrorAlarm.lambda_handler"
   runtime                        = "python3.12"
@@ -66,24 +66,24 @@ resource "aws_iam_role_policy" "dead_letter_error_alert_lambda_create_logs" {
   })
 }
 
-resource "aws_iam_role_policy" "dead_letter_error_alert_lambda_sqs" {
-  name = lower("dead_letter_error_alert_lambda_sqs")
-  role = aws_iam_role.dead_letter_error_alert_lambda_execution.id
+# Comment out the following block to remove access to the DLQ to mimick delivery issues to the DLQ
+# resource "aws_iam_role_policy" "dlq_alarm_lambda_sqs" {
+#   name = lower("dead_letter_error_alert_lambda_sqs")
+#   role = aws_iam_role.dead_letter_error_alert_lambda_execution.id
 
-  policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [
-      {
-        Action = [
-          "sqs:SendMessage",
-        ],
-        Effect   = "Allow",
-        Resource = aws_sqs_queue.dead_letter_error_alert.arn
-      }
-    ]
-  })
-
-}
+#   policy = jsonencode({
+#     Version = "2012-10-17",
+#     Statement = [
+#       {
+#         Action = [
+#           "sqs:SendMessage",
+#         ],
+#         Effect   = "Allow",
+#         Resource = aws_sqs_queue.dead_letter_error_alert.arn
+#       }
+#     ]
+#   })
+# }
 
 resource "aws_sqs_queue" "dead_letter_error_alert" {
   name = "AWSAlertValidationDeadLetterErrorAlarm"

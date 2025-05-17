@@ -1,4 +1,4 @@
-# AWS Lambda DLQ Alert (Terraform Example)
+# AWS Lambda Dead Letter Error Alarm (Terraform Example)
 
 This repository provides a Terraform-based example to deploy an AWS Lambda function designed to fail and send messages to a Dead Letter Queue (DLQ).
 It is part of the blog post [AWS Alert Validation - Lambda](https://medium.com/p/13ad4842aadd).
@@ -12,13 +12,13 @@ It is part of the blog post [AWS Alert Validation - Lambda](https://medium.com/p
   - [Dependencies](#dependencies)
 - [Terraform Usage](#terraform-usage)
 - [Python Code Documentation](#python-code-documentation)
-- [How to Trigger DLQ Message](#how-to-trigger-throttling)
+- [How to Trigger Dead Letter Error](#how-to-trigger-dead-letter-error)
 - [License](#license)
 
 ## Overview & Purpose
 
-This project demonstrates how to validate and test AWS Lambda DLQ alarms by deploying a Lambda function with code set to raise an exception.
-The failure will trigger the DLQ, allowing you to test the alerting mechanism.
+This project demonstrates how to validate and test AWS Lambda Dead Letter Error alarms by deploying a Lambda function with code set to raise an exception.
+The failure will trigger the DLQ but the Lambda will not have access to it, allowing you to test the alerting mechanism.
 
 Terraform is used to provision:
 
@@ -31,10 +31,10 @@ Terraform is used to provision:
 
 ```plaintext
 .
-├── DLQAlert.py               # Python Lambda function that simulates a failure sending event to DLQ
-├── DLQAlert.zip              # Generated zip file for Lambda deployment (created by Terraform)
-├── main.tf                   # Terraform configuration for Lambda, IAM, and CloudWatch
-├── terraform.tf              # Terraform provider versions and required Terraform version
+├── DeadLetterErrorAlert.py               # Python Lambda function that simulates a failure sending event to DLQ
+├── DeadLetterErrorAlert.zip              # Generated zip file for Lambda deployment (created by Terraform)
+├── main.tf                               # Terraform configuration for Lambda, IAM, and CloudWatch
+├── terraform.tf                          # Terraform provider versions and required Terraform version
 ```
 
 ## Requirements & Dependencies
@@ -64,7 +64,7 @@ After deployment, you can trigger the Lambda to simulate throttling.
 
 ## Python Code Documentation
 
-The DLQAlert.py file is a simple Python script intended for use in an AWS Lambda function. Its purpose is to simulate a failing Lambda function to help test DLQ alarm scenarios.
+The DeadLetterErrorAlert.py file is a simple Python script intended for use in an AWS Lambda function. Its purpose is to simulate a failing Lambda function to help test DeadLetterError alarm scenarios.
 
 ```python
 def lambda_handler(event, context):
@@ -75,7 +75,7 @@ def lambda_handler(event, context):
 - Raising an exception simulates a failure in the Lambda function.
 - The Lambda function is configured to send failed events to a Dead Letter Queue (DLQ) for further processing.
 
-## How to Trigger Error
+## How to Trigger Dead Letter Error
 
 Run the following command in a terminal:
 
