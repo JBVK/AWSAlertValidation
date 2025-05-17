@@ -82,7 +82,9 @@ def lambda_handler(event, context):
 
 ```
 
-- Raising an exception simulates a failure in the Lambda function.
+- Running the `lambda_handler` function will log a message to CloudWatch logs. The log message can be customized by setting the `LOG_LINE` environment variable in the Lambda function configuration.
+- The default log message is "This is a test log line.".
+- The log message is logged at the INFO level using the `logging` module.
 
 ## How to Trigger Log Alert
 
