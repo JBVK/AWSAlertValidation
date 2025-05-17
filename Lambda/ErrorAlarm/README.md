@@ -1,4 +1,4 @@
-# AWS Lambda Throttling Alert (Terraform Example)
+# AWS Lambda Error Alarm (Terraform Example)
 
 This repository provides a Terraform-based example to deploy an AWS Lambda function designed to trigger a error
 alarm. It is part of the blog post [AWS Alert Validation - Lambda](https://medium.com/p/13ad4842aadd).
@@ -30,8 +30,8 @@ Terraform is used to provision:
 
 ```plaintext
 .
-├── ErrorAlert.py        # Python Lambda function that simulates processing with a 15-second sleep
-├── ErrorAlert.zip       # Generated zip file for Lambda deployment (created by Terraform)
+├── ErrorAlarm.py        # Python Lambda function that simulates processing with a 15-second sleep
+├── ErrorAlarm.zip       # Generated zip file for Lambda deployment (created by Terraform)
 ├── main.tf              # Terraform configuration for Lambda, IAM, and CloudWatch
 ├── terraform.tf         # Terraform provider versions and required Terraform version
 ```
@@ -84,4 +84,4 @@ Replace `<function_name>` with the name of the Lambda function created by Terraf
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. See the [LICENSE](../../LICENSE) file for details.

@@ -1,4 +1,4 @@
-# AWS Lambda Log Alert (Terraform Example)
+# AWS Lambda Log Alarm (Terraform Example)
 
 This repository provides a Terraform-based example to deploy an AWS Lambda function designed to log a message and trigger a
 log alarm. It is part of the blog post [AWS Alert Validation - Lambda](https://medium.com/p/13ad4842aadd).
@@ -12,7 +12,7 @@ log alarm. It is part of the blog post [AWS Alert Validation - Lambda](https://m
   - [Dependencies](#dependencies)
 - [Terraform Usage](#terraform-usage)
 - [Python Code Documentation](#python-code-documentation)
-- [How to Trigger Log Alert](#how-to-trigger-log-alert)
+- [How to Trigger Log Alarm](#how-to-trigger-log-alarm)
 - [License](#license)
 
 ## Overview & Purpose
@@ -30,10 +30,10 @@ Terraform is used to provision:
 
 ```plaintext
 .
-├── ErrorAlert.py        # Python Lambda function that simulates processing with a 15-second sleep
-├── ErrorAlert.zip       # Generated zip file for Lambda deployment (created by Terraform)
-├── main.tf              # Terraform configuration for Lambda, IAM, and CloudWatch
-├── terraform.tf         # Terraform provider versions and required Terraform version
+├── LogAlarm.py           # Python Lambda function that logs a message to CloudWatch
+├── LogAlarm.zip          # Generated zip file for Lambda deployment (created by Terraform)
+├── main.tf               # Terraform configuration for Lambda, IAM, and CloudWatch
+├── terraform.tf          # Terraform provider versions and required Terraform version
 ```
 
 ## Requirements & Dependencies
@@ -86,7 +86,7 @@ def lambda_handler(event, context):
 - The default log message is "This is a test log line.".
 - The log message is logged at the INFO level using the `logging` module.
 
-## How to Trigger Log Alert
+## How to Trigger Log Alarm
 
 Run the following command in a terminal:
 
@@ -94,7 +94,7 @@ Run the following command in a terminal:
 aws lambda invoke --function-name <function_name> outfile
 ```
 
-Replace `<function_name>` with the name of the Lambda function created by Terraform. This will invoke the function and write the log line to the logs making the logalert to trigger.
+Replace `<function_name>` with the name of the Lambda function created by Terraform. This will invoke the function and write the log line to the logs making the logalarm to trigger.
 
 ## License
 
