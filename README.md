@@ -11,3 +11,7 @@ Example code for blog serie AWS Alert Validation
 ## Dev.to
 
 - [AWS Alert Validation - EC2](https://dev.to/aws-builders/aws-alert-validation-ec2-45bn)
+
+# Example code
+
+- [Lambda](./Lambda/)
